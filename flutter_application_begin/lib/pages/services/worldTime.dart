@@ -7,7 +7,7 @@ class worldTime{
   String flag; //flag appear on screen
   String url; // location url
   String time; //utc pffset time
-  bool isDayTime; // true for daytime else false 
+  bool isDayTime =true; // true for daytime else false 
 
   //creating constructor 
   worldTime({this.location,this.flag,this.url});

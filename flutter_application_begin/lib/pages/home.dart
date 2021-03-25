@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
    
     // recieving args and updating value of data
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty? data: ModalRoute.of(context).settings.arguments;
     print("data here $data");
 
     // set background img
@@ -43,7 +43,18 @@ class _HomeState extends State<Home> {
                 // ignore: deprecated_member_use
                 FlatButton.icon(
                   onPressed: () async{
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => ChooseLocation()));
+                  dynamic result = await Navigator.push(context,MaterialPageRoute(builder: (context) => ChooseLocation()));
+                  if (result!= null){
+                    setState(() {
+                                      data = {
+                                        'time': result['time'],
+                                        'location':result['location'],
+                                        'isDayTime':result['isDayTime'],
+                                        'flag':result['flag'],
+                                      };
+                                    });
+                  }
+                  
                   },
               
                 
